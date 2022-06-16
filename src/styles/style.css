@@ -1,0 +1,53 @@
+
+.notes-header{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #222222;
+  }
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    display: block;
+    color: rgb(211, 199, 34);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: rgb(211, 199, 34);
+    color: black;
+  }
+
+  
+  /* Style the search box inside the navigation bar */
+  .topnav input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 16px;
+    margin-right: 16px;
+    font-size: 17px;
+    height: 30px !important;
+  }
+
+  
+.topnav .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 16px;
+    margin-right: 16px;
+    background-color: rgb(211, 199, 34);    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    height: 40px !important;
+  }
+  
+  .topnav .search-container button:hover {
+    background: rgb(240, 229, 72);
+  }
