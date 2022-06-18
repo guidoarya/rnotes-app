@@ -7,9 +7,9 @@ class Header extends React.Component {
                     <div className="topnav">
                         <a className="notes-header" href="/">E-NOTES</a>
                         <div class="search-container">
-                        <form action="/action_page.php">
+                        <form action="/">
                              <button type="submit"><i class="fa fa-search"></i></button>
-                            <input type="text" placeholder="Search.." name="search"/>
+                            <input type="text" placeholder="Search title here..." name="search"/>
                             </form>
                         </div>  
                     </div>
