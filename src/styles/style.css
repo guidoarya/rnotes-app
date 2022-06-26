@@ -160,6 +160,7 @@ body{
     border: 1px dashed rgb(240, 229, 72);
     padding: 16px;
     border-radius: 12px;
+    max-width: 500px !important;
    }
 
    .note-body_date{

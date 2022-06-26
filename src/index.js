@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import NoteApp from "./components/NoteApp";
 import "./styles/style.css";
 
