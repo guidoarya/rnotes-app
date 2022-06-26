@@ -11,16 +11,16 @@ class NoteApp extends React.Component {
         super(props);
         this.state= {
             notes: getData(),
+            searchValue: '',
+            activeNote: [],
+            archiveNote: [],
         }
-
-        const searching = (search, notes) => {
-            return notes.filter(note => note.title.toLowerCase().includes(search.toLowerCase()));
-        };
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this)
         this.onArchiveHandler = this.onArchiveHandler.bind(this)
         this.onNoteListHandle = this.onNoteListHandle.bind(this)
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this)
+        this.onSearchHandler = this.onSearchHandler.bind(this)
     }
 
     onDeleteHandler(id){
@@ -41,6 +41,10 @@ class NoteApp extends React.Component {
     }
 
     onAddNoteHandler({ title, body }) {
+        let newDate = new Date()
+        const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        let fullDate = `${newDate.getDate()} ${month[newDate.getMonth()]} ${newDate.getFullYear()}`
+
         this.setState((prevState) => {
           return {
             notes: [
@@ -50,21 +54,62 @@ class NoteApp extends React.Component {
                 title,
                 body,
                 archived: false,
+                createdAt: fullDate,
               },
             ],
           };
         });
-        console.log(title)
       }
 
+    activeNotes(){
+      const dataActiveNote = this.state.notes.filter(note => note.archived === false)
+      return dataActiveNote;
+    }
+
+    archiveNote(){
+      const dataArchiveNote = this.state.notes.filter(note => note.archived === true)
+      return dataArchiveNote;
+    }
+
+    onSearchHandler(value) {
+        this.setState(() => {
+          return {
+            searchValue: value,
+          };
+        })
+    };
+
+    searchingFilter(data){
+      return data.filter(note => note.title.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+    }
+    
     render(){
         return(
-            <React.Fragment>
-                <Header/>
+            <>
+                <Header onSearch={this.onSearchHandler}/>
                 <NoteInput onAddNote={this.onAddNoteHandler}/>
-                <NoteList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} onNoteList={this.onNoteListHandle}/>
-                <ArchiveList notes={this.state.notes} onDelete={this.onDeleteHandler} onNoteList={this.onNoteListHandle}/>
-            </React.Fragment>
+                <div className="note-list_container">
+                  <h2>Note List</h2>
+                  {this.searchingFilter(this.searchingFilter(this.activeNotes())).length === 0 ?
+                    (
+                      <p className='not-found'>Your note doesn't exist</p>
+                    ) : (
+                    <NoteList notes={this.searchingFilter(this.activeNotes())} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} onNoteList={this.onNoteListHandle}/>
+                    )
+                  }
+                </div>
+                <div className="note-list_container">
+                  <h2>Archive List</h2>
+                  {this.searchingFilter(this.searchingFilter(this.archiveNote())).length === 0 ?
+                    (
+                      <p className='not-found'>Your archived note doesn't exist</p>
+                    ) : (
+                      <ArchiveList notes={this.searchingFilter(this.archiveNote())} onDelete={this.onDeleteHandler} onNoteList={this.onNoteListHandle}/>
+                    )
+                  }
+                </div>
+               
+            </>
         )
     }
 }

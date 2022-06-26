@@ -7,6 +7,7 @@ class Header extends React.Component {
         this.state = {
           searchValue: '',
         };
+        this.onSearchChangeHandler = this.onSearchChangeHandler.bind(this)
       }
 
       onSearchChangeHandler(event) {
@@ -15,19 +16,18 @@ class Header extends React.Component {
             searchValue: event.target.value,
           };
         });
+        this.props.onSearch(this.state.searchValue);
       }
 
-
     render(){
-        return(
+      return(
             <React.Fragment>
                     <div className="topnav">
                         <a className="notes-header" href="/">E-NOTES</a>
                         <div className="search-container">
                         <form>
                             <button type="submit"><i className="fa fa-search"></i></button>
-                            <input type="text" placeholder="Search title here..." value={this.state.searchValue} onChange={this.onSearchChangeHandler}/>
-                            {this.state.searchValue}
+                            <input type="text" placeholder="Search title here..." onChange={this.onSearchChangeHandler}/>
                         </form>
                         </div>  
                     </div>

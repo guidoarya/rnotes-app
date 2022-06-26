@@ -94,7 +94,10 @@ body{
     margin-bottom: 32px;
     max-width: 700px;
     margin: 0 auto;
+   }
 
+   .max-char{
+    color: rgb(240, 229, 72);
    }
    
    .note-input input, .note-input textarea {
@@ -125,7 +128,6 @@ body{
     border-radius: 2px;
    }
 
-
    .submit-note{
     width: 100%;
     height: 40px;
@@ -133,10 +135,20 @@ body{
     background-color: rgb(240, 229, 72);
     font-weight: 600;
     font-size: 18px;
-    
+    cursor: pointer;
+   }
+   .submit-note:hover{
+    background-color: rgb(221, 212, 88);
    }
 
    /* List */
+
+   .not-found{
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 600;
+   }
 
    .note-list_container{
     margin: 46px 8vw;
@@ -149,7 +161,6 @@ body{
   }
 
    .note-list{
-    /* margin: 24px 8vw; */
     display: grid;
     grid-column: auto;
     grid-template-columns: auto auto auto;
@@ -165,12 +176,14 @@ body{
 
    .note-body_date{
     color: rgb(240, 229, 72);
-
    }
 
    .note-body_title{
     font-size: 24px;
     color: white;
+    overflow: hidden;
+    max-width: 18ch;
+    max-height: 5ch;
    }
 
    .note-body_desc{

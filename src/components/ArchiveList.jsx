@@ -4,8 +4,7 @@ import NoteItem from './NoteItem';
 function ArchiveList ({notes, onDelete, onArchive, onNoteList}){
    
         return(
-            <div className="note-list_container">
-                <h2>Archived List</h2>
+  
                 <div className='note-list'>
                     {
                         notes.map(function(note) {
@@ -16,7 +15,6 @@ function ArchiveList ({notes, onDelete, onArchive, onNoteList}){
                         })
                     }
                 </div>
-            </div>
         )
 
 }
